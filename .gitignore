@@ -1,2 +1,4 @@
 /secrets/directus_admin_password.txt
 /compose.override.yml
+/secrets/directus_secret.txt
+secrets/*
