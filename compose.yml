@@ -42,16 +42,16 @@ services:
     secrets: 
       - database_password
 
-  cache:
-    image: redis:6
-    restart: always
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # cache:
+  #   image: redis:6
+  #   restart: always
+  #   volumes:
+  #     - redis_data:/data
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
 
   directus:
     build: ./directus 
@@ -65,14 +65,15 @@ services:
     depends_on:
       database:
         condition: service_healthy
-      cache:
-        condition: service_healthy
+      # cache:
+      #   condition: service_healthy
     environment:
       SECRET_FILE: '/run/secrets/directus_secret'
       PUBLIC_URL: 'https://monaslyceedirectus.bhdev.org'
-      CORS_ENABLED: true
-      CORS_ORIGIN: '*'
-      WEBSOCKETS_ENABLED: true
+      CORS_ENABLED: 'true'
+      # CORS_ORIGIN: '*'
+      CORS_ORIGIN: 'https://monaslycee.bhdev.org,https://unsubscribemonaslycee.bhdev.org,https://monaslyceeresetpassword.bhdev.org'
+      WEBSOCKETS_ENABLED: 'true'
       LOG_LEVEL: 'error'
 
       DB_CLIENT: "pg"
@@ -82,9 +83,9 @@ services:
       DB_USER: "directus"
       DB_PASSWORD_FILE: '/run/secrets/database_password'
 
-      CACHE_ENABLED: "true"
-      CACHE_STORE: "redis"
-      REDIS: "redis://cache:6379"
+      CACHE_ENABLED: "false"
+      # CACHE_STORE: "redis"
+      # REDIS: "redis://cache:6379"
 
       ADMIN_EMAIL: "adminlycee@example.com"
       ADMIN_PASSWORD_FILE: "/run/secrets/directus_admin_password"
@@ -115,5 +116,5 @@ secrets:
   directus_admin_password:
     file: ./secrets/directus_admin_password.txt
 
-volumes:
-  redis_data:
+# volumes:
+#   redis_data:
