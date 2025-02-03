@@ -64,7 +64,7 @@ services:
       LOG_LEVEL: 'error'
 
       EMAIL_TRANSPORT: 'smtp'
-      EMAIL_FROM: 'ne-pas-repondre@monaslycee.fr'
+      EMAIL_FROM: 'no-reply@bhdev.org'
       EMAIL_SMTP_HOST: 'mail.your-server.de'
       EMAIL_SMTP_PORT: '587'
       EMAIL_SMTP_USER: 'no-reply@bhdev.org'
