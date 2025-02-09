@@ -98,10 +98,6 @@ services:
       retries: 3
      
     
-
-    # Environment variables can also be defined in a file (for example `.env`):
-    # env_file:
-    # - .env
 secrets:
   database_password:
     file: ./secrets/database_password.txt
